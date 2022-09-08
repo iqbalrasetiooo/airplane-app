@@ -1,3 +1,4 @@
+import 'package:airplane/ui/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:airplane/shared/theme.dart';
 
@@ -8,49 +9,8 @@ class MainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget header() {
-      return Container(
-        margin: EdgeInsets.symmetric(vertical: 30, horizontal: 24),
-        width: double.infinity,
-        height: 150,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Howdy,\nKezia Anne',
-                  style: blackTextStyle.copyWith(
-                    fontSize: 24,
-                    fontWeight: black,
-                    height: 1.5,
-                  ),
-                ),
-                const SizedBox(height: 6),
-                Text(
-                  'Where to fly today?',
-                  style: greyTextStyle.copyWith(
-                    fontSize: 16,
-                    fontWeight: light,
-                    height: 1.5,
-                  ),
-                ),
-              ],
-            ),
-            Container(
-              height: 60,
-              width: 60,
-              child: const CircleAvatar(
-                radius: 30,
-                backgroundColor: Colors.transparent,
-                backgroundImage: AssetImage('assets/image_profile.png'),
-              ),
-            )
-          ],
-        ),
-      );
+    Widget buildContent() {
+      return HomePage();
     }
 
     Widget customBottomNavigation() {
@@ -92,9 +52,10 @@ class MainPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: kBackgroundColor,
       body: SafeArea(
+        bottom: false,
         child: Stack(
           children: [
-            header(),
+            HomePage(),
             customBottomNavigation(),
           ],
         ),
