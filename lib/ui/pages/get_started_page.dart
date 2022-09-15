@@ -44,8 +44,8 @@ class GetStartedPage extends StatelessWidget {
                   ),
                 ),
                 CustomButton(
-                  paddingTop: 50,
-                  paddingBottom: 80,
+                  marginTop: 50,
+                  marginBottom: 80,
                   title: 'Get Started',
                   width: 220,
                   onpressed: () {
