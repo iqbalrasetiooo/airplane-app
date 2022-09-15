@@ -88,11 +88,12 @@ class SignUpPage extends StatelessWidget {
             passwordInput(),
             hobbyInput(),
             CustomButton(
-                paddingTop: 30,
-                title: 'Register',
-                onpressed: () {
-                  Navigator.pushNamed(context, '/bonus');
-                }),
+              marginTop: 30,
+              title: 'Register',
+              onpressed: () {
+                Navigator.pushNamed(context, '/bonus');
+              },
+            ),
             tacButton(),
           ],
         ),
