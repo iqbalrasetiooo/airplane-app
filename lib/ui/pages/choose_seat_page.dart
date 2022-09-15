@@ -328,6 +328,17 @@ class ChooseSeatPage extends StatelessWidget {
       );
     }
 
+    Widget checkoutButton() {
+      return CustomButton(
+        marginTop: 30,
+        marginBottom: 46,
+        title: 'Continue to Checkout',
+        onpressed: () {
+          Navigator.pushNamed(context, '/checkout');
+        },
+      );
+    }
+
     return Scaffold(
       backgroundColor: kBackgroundColor,
       body: SafeArea(
@@ -339,12 +350,7 @@ class ChooseSeatPage extends StatelessWidget {
             title(),
             seatStatus(),
             seatSelect(),
-            CustomButton(
-              marginTop: 30,
-              marginBottom: 46,
-              title: 'Continue to Checkout',
-              onpressed: () {},
-            )
+            checkoutButton(),
           ],
         ),
       ),
