@@ -4,10 +4,10 @@ import 'package:airplane/shared/theme.dart';
 class CustomButton extends StatelessWidget {
   final String title;
   final double width;
-  final double paddingTop;
-  final double paddingRight;
-  final double paddingLeft;
-  final double paddingBottom;
+  final double marginTop;
+  final double marginRight;
+  final double marginLeft;
+  final double marginBottom;
   final Function() onpressed;
 
   const CustomButton({
@@ -15,20 +15,20 @@ class CustomButton extends StatelessWidget {
     required this.title,
     this.width = double.infinity,
     required this.onpressed,
-    this.paddingTop = 0,
-    this.paddingBottom = 0,
-    this.paddingLeft = 0,
-    this.paddingRight = 0,
+    this.marginTop = 0,
+    this.marginBottom = 0,
+    this.marginLeft = 0,
+    this.marginRight = 0,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(
-        top: paddingTop,
-        bottom: paddingBottom,
-        left: paddingLeft,
-        right: paddingRight,
+        top: marginTop,
+        bottom: marginBottom,
+        left: marginLeft,
+        right: marginRight,
       ),
       height: 55,
       width: width,
