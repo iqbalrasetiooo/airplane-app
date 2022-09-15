@@ -1,8 +1,12 @@
 import 'package:airplane/ui/pages/bonus_page.dart';
+import 'package:airplane/ui/pages/checkout_page.dart';
+import 'package:airplane/ui/pages/choose_seat_page.dart';
+import 'package:airplane/ui/pages/detail_page.dart';
 import 'package:airplane/ui/pages/get_started_page.dart';
 import 'package:airplane/ui/pages/main_page.dart';
 import 'package:airplane/ui/pages/sign_up_page.dart';
 import 'package:airplane/ui/pages/splash_page.dart';
+import 'package:airplane/ui/pages/success_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -23,6 +27,10 @@ class MyApp extends StatelessWidget {
         '/sign-up': (context) => const SignUpPage(),
         '/bonus': (context) => const BonusPage(),
         '/main': (context) => const MainPage(),
+        '/detail': (context) => const DetailPage(),
+        '/seat': (context) => const ChooseSeatPage(),
+        '/checkout': (context) => const CheckoutPage(),
+        '/success': (context) => const SuccessPage(),
       },
     );
   }
