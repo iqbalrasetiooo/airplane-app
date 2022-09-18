@@ -12,6 +12,8 @@ const Color kGreenColor = Color(0xff0EC3AE);
 const Color kRedColor = Color(0xffEB70A5);
 const Color kBackgroundColor = Color(0xffFAFAFA);
 const Color kInactiveColor = Color(0xffDBD7EC);
+const Color kAvailableColor = Color(0xffE0D9FF);
+const Color kUnavailableColor = Color(0xffEBECF1);
 
 TextStyle blackTextStyle = GoogleFonts.plusJakartaSans(
   color: kBlackColor,
