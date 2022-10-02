@@ -1,3 +1,5 @@
+import 'package:airplane/cubit/auth_cubit.dart';
+import 'package:airplane/cubit/page_cubit.dart';
 import 'package:airplane/ui/pages/bonus_page.dart';
 import 'package:airplane/ui/pages/checkout_page.dart';
 import 'package:airplane/ui/pages/choose_seat_page.dart';
@@ -7,9 +9,14 @@ import 'package:airplane/ui/pages/main_page.dart';
 import 'package:airplane/ui/pages/sign_up_page.dart';
 import 'package:airplane/ui/pages/splash_page.dart';
 import 'package:airplane/ui/pages/success_page.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+
   runApp(const MyApp());
 }
 
@@ -19,19 +26,29 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      routes: {
-        '/': (context) => const SplashPage(),
-        '/get-started': (context) => const GetStartedPage(),
-        '/sign-up': (context) => const SignUpPage(),
-        '/bonus': (context) => const BonusPage(),
-        '/main': (context) => const MainPage(),
-        '/detail': (context) => const DetailPage(),
-        '/seat': (context) => const ChooseSeatPage(),
-        '/checkout': (context) => const CheckoutPage(),
-        '/success': (context) => const SuccessPage(),
-      },
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => PageCubit(),
+        ),
+        BlocProvider(
+          create: (context) => AuthCubit(),
+        ),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        routes: {
+          '/': (context) => const SplashPage(),
+          '/get-started': (context) => const GetStartedPage(),
+          '/sign-up': (context) => SignUpPage(),
+          '/bonus': (context) => const BonusPage(),
+          '/main': (context) => const MainPage(),
+          '/detail': (context) => const DetailPage(),
+          '/seat': (context) => const ChooseSeatPage(),
+          '/checkout': (context) => const CheckoutPage(),
+          '/success': (context) => const SuccessPage(),
+        },
+      ),
     );
   }
 }
