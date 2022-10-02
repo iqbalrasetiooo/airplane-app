@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "2155639823",
+    "project_id": "airplane-56fe1",
+    "storage_bucket": "airplane-56fe1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:2155639823:android:72a26563a8a273a4dd5f7a",
+        "android_client_info": {
+          "package_name": "com.iqbal.airplane"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "2155639823-grntcbl82prgdkmr79r18hb7cijgkd9c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNRmJRToUSW6jg0nbsf9Xl9GtjStunK9g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "2155639823-grntcbl82prgdkmr79r18hb7cijgkd9c.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "2155639823-6hrmbkb1ndc0aokdqc1rplngt4ompime.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.iqbal.airplane"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
