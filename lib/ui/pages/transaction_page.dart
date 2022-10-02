@@ -5,8 +5,10 @@ class TransactionPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text('Transaction Page'),
+    return Scaffold(
+      body: Center(
+        child: Text('Transaction Page'),
+      ),
     );
   }
 }
