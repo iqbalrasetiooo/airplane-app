@@ -1,6 +1,6 @@
 part of 'page_cubit.dart';
 
-@immutable
+// @immutable
 abstract class PageState {}
 
 class PageInitial extends PageState {}

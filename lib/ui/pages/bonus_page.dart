@@ -1,6 +1,8 @@
+import 'package:airplane/cubit/auth_cubit.dart';
 import 'package:airplane/ui/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:airplane/shared/theme.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BonusPage extends StatelessWidget {
   const BonusPage({Key? key}) : super(key: key);
@@ -9,7 +11,7 @@ class BonusPage extends StatelessWidget {
   Widget build(BuildContext context) {
     Widget text() {
       return Container(
-        margin: EdgeInsets.only(top: 80),
+        margin: const EdgeInsets.only(top: 80),
         child: Column(
           children: [
             Text(
@@ -35,42 +37,84 @@ class BonusPage extends StatelessWidget {
     }
 
     Widget bonusCard() {
-      return Container(
-        height: 211,
-        width: 320,
-        padding: EdgeInsets.all(defaultMargin),
-        decoration: BoxDecoration(
-          boxShadow: [
-            BoxShadow(
-              color: kPrimaryColor.withOpacity(0.5),
-              blurRadius: 50,
-              offset: const Offset(0, 10),
+      return BlocBuilder(builder: (context, state) {
+        if (state is AuthSuccess) {
+          return Container(
+            height: 211,
+            width: 320,
+            padding: EdgeInsets.all(defaultMargin),
+            decoration: BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                  color: kPrimaryColor.withOpacity(0.5),
+                  blurRadius: 50,
+                  offset: const Offset(0, 10),
+                ),
+              ],
+              gradient: const LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  Color(0xff5445E5),
+                  Color(0xff998EFD),
+                ],
+              ),
+              color: kPrimaryColor,
+              borderRadius: BorderRadius.circular(defaultRadius),
             ),
-          ],
-          gradient: const LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              Color(0xff5445E5),
-              Color(0xff998EFD),
-            ],
-          ),
-          color: kPrimaryColor,
-          borderRadius: BorderRadius.circular(defaultRadius),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Name',
+                          style: whiteTextStyle.copyWith(
+                            fontSize: 14,
+                            fontWeight: light,
+                          ),
+                        ),
+                        const SizedBox(height: 4),
+                        Text(
+                          state.user.name,
+                          style: whiteTextStyle.copyWith(
+                            fontSize: 22,
+                            fontWeight: bold,
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Image.asset(
+                          'assets/icon_plane.png',
+                          width: 24,
+                          height: 24,
+                        ),
+                        const SizedBox(width: 6),
+                        Text(
+                          'Pay',
+                          style: whiteTextStyle.copyWith(
+                            fontSize: 16,
+                            fontWeight: medium,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Name',
+                      'Balance',
                       style: whiteTextStyle.copyWith(
                         fontSize: 14,
                         fontWeight: light,
@@ -78,57 +122,21 @@ class BonusPage extends StatelessWidget {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      'Kezia Anne',
+                      'IDR 280.000.000',
                       style: whiteTextStyle.copyWith(
-                        fontSize: 22,
+                        fontSize: 26,
                         fontWeight: bold,
                       ),
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Image.asset(
-                      'assets/icon_plane.png',
-                      width: 24,
-                      height: 24,
-                    ),
-                    const SizedBox(width: 6),
-                    Text(
-                      'Pay',
-                      style: whiteTextStyle.copyWith(
-                        fontSize: 16,
-                        fontWeight: medium,
-                      ),
                     ),
                   ],
                 ),
               ],
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Balance',
-                  style: whiteTextStyle.copyWith(
-                    fontSize: 14,
-                    fontWeight: light,
-                  ),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  'IDR 280.000.000',
-                  style: whiteTextStyle.copyWith(
-                    fontSize: 26,
-                    fontWeight: bold,
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      );
+          );
+        } else {
+          return SizedBox();
+        }
+      });
     }
 
     return Scaffold(

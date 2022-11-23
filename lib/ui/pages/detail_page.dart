@@ -1,12 +1,16 @@
+import 'package:airplane/models/destination_model.dart';
+import 'package:airplane/ui/pages/choose_seat_page.dart';
 import 'package:airplane/ui/widgets/custom_button.dart';
 import 'package:airplane/ui/widgets/destination_card.dart';
 import 'package:airplane/ui/widgets/interest_item.dart';
 import 'package:flutter/material.dart';
 import 'package:airplane/shared/theme.dart';
+import 'package:intl/intl.dart';
 import '../widgets/photo_item.dart';
 
 class DetailPage extends StatelessWidget {
-  const DetailPage({Key? key}) : super(key: key);
+  final DestinationModel destination;
+  const DetailPage(this.destination, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,10 +18,10 @@ class DetailPage extends StatelessWidget {
       return Container(
         width: double.infinity,
         height: 450,
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           image: DecorationImage(
             fit: BoxFit.cover,
-            image: AssetImage('assets/image_destination1.png'),
+            image: NetworkImage(destination.imageUrl),
           ),
         ),
       );
@@ -69,7 +73,7 @@ class DetailPage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Lake Ciliwung',
+                          destination.name,
                           style: whiteTextStyle.copyWith(
                             fontSize: 24,
                             fontWeight: bold,
@@ -77,7 +81,7 @@ class DetailPage extends StatelessWidget {
                         ),
                         const SizedBox(height: 2),
                         Text(
-                          'Tangerang',
+                          destination.city,
                           style: whiteTextStyle.copyWith(
                             fontSize: 16,
                             fontWeight: light,
@@ -95,7 +99,7 @@ class DetailPage extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    '4.5',
+                    destination.rating.toString(),
                     style: whiteTextStyle.copyWith(
                       fontWeight: semibold,
                       fontSize: 14,
@@ -209,7 +213,11 @@ class DetailPage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'IDR 2.500.000',
+                          NumberFormat.currency(
+                            locale: 'id',
+                            symbol: 'IDR ',
+                            decimalDigits: 0,
+                          ).format(destination.price),
                           style: blackTextStyle.copyWith(
                             fontSize: 18,
                             fontWeight: semibold,
@@ -231,7 +239,13 @@ class DetailPage extends StatelessWidget {
                     title: 'Book Now',
                     width: 170,
                     onpressed: () {
-                      Navigator.pushNamed(context, '/seat');
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              ChooseSeatPage(destination: destination),
+                        ),
+                      );
                     },
                   )
                 ],
